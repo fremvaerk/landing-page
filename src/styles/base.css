@@ -120,9 +120,13 @@ a:hover {
 
 /* Text pages: privacy, thanks and 404 */
 
+/* The column starts at the same left edge as the header. Each block is at most about 68 characters wide. */
 .prose {
-  max-width: 68ch;
   padding-block: 72px 96px;
+}
+
+.prose > * {
+  max-width: 40rem;
 }
 
 .prose h1 {
