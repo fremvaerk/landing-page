@@ -105,4 +105,21 @@ const langHref = (target: Lang): string => (page === 'notFound' ? routes.home[ta
       display: none;
     }
   }
+
+  /*
+   * Below 1024 px the header sits on the brightest part of the aurora.
+   * White text keeps a contrast of at least 4.5:1 there. Wider screens use the design colours.
+   */
+  @media (max-width: 1023.98px) {
+    .nav-link,
+    .lang-switch,
+    .lang-switch a,
+    .lang-switch a[aria-current] {
+      color: var(--link-hover);
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+  }
 </style>

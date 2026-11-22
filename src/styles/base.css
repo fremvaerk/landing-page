@@ -20,8 +20,6 @@ body {
   font-family: var(--font-sans);
   font-size: 1.0625rem;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -38,7 +36,6 @@ p {
 
 a {
   color: var(--link);
-  text-underline-offset: 0.18em;
 }
 
 a:hover {
