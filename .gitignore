@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.netlify/
+.env*
+.DS_Store
+.remember/
+.worktrees/
+.playwright-mcp/
