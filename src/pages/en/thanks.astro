@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { routes } from '../../i18n/ui';
+---
+
+<Layout
+  lang="en"
+  page="thanks"
+  title="Thank you for your message – FremVærk"
+  description="We have received your message."
+  noindex
+>
+  <article class="container prose">
+    <h1>Thank you for your message</h1>
+    <p>We have received it, and we will reply within one working day.</p>
+    <p><a href={routes.home.en}>Back to the home page</a></p>
+  </article>
+</Layout>
