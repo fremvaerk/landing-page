@@ -1,0 +1,67 @@
+---
+// Decorative northern-lights layer at the top of the landing pages.
+// Static: no animation and no script. The container clips the blobs, so they cannot cause horizontal scroll.
+---
+
+<div class="aurora" aria-hidden="true">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+  <div class="fade"></div>
+</div>
+
+<style>
+  .aurora {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 760px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .blob-a {
+    top: -170px;
+    left: -4%;
+    width: 78%;
+    height: 480px;
+    background: radial-gradient(closest-side, var(--aurora-a), transparent);
+    filter: blur(44px);
+    transform: rotate(-9deg);
+  }
+
+  .blob-b {
+    top: -120px;
+    right: -8%;
+    width: 58%;
+    height: 420px;
+    background: radial-gradient(closest-side, var(--aurora-b), transparent);
+    filter: blur(52px);
+    transform: rotate(12deg);
+  }
+
+  .blob-c {
+    top: -70px;
+    left: 26%;
+    width: 42%;
+    height: 240px;
+    background: radial-gradient(closest-side, var(--aurora-c), transparent);
+    filter: blur(32px);
+    transform: rotate(-4deg);
+  }
+
+  .fade {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 420px;
+    background: linear-gradient(180deg, transparent, var(--ground));
+  }
+</style>

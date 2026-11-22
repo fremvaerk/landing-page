@@ -1,0 +1,48 @@
+/*
+ * Design tokens for the "Fortegnelse Nordlys" design.
+ * All colours live here, so the palette can change in one file.
+ */
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --ground: #070b14;
+  --panel: #0a0f1c;
+
+  /* Text */
+  --heading: #f3f6fb;
+  --text: #e9eef7;
+  --desc: #c5cedc;
+  --muted: #a3aec0;
+  --dim: #8592a8;
+  --link: #d5deec;
+  --link-hover: #ffffff;
+
+  /* Lines and controls */
+  --line: #1a2233;
+  --btn-border: #2a3448;
+  --input-bg: #070b14;
+  --input-border: #5a6680;
+
+  /* Accents */
+  --accent: #5ee0c0;
+  --accent-2: #b4a4ff;
+
+  /* Aurora blobs (decorative, landing page only) */
+  --aurora-a: color-mix(in oklab, var(--accent) 50%, transparent);
+  --aurora-b: color-mix(in oklab, var(--accent-2) 42%, transparent);
+  --aurora-c: color-mix(in oklab, var(--accent) 34%, var(--accent-2) 10%);
+
+  /* Type */
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --page-max: 1200px;
+  --gutter: 32px;
+}
+
+@media (max-width: 639.98px) {
+  :root {
+    --gutter: 20px;
+  }
+}

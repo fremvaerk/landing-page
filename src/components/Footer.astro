@@ -1,0 +1,39 @@
+---
+import { CVR, routes, ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span class="footer-name">FremVærk</span>
+    <span>CVR {CVR}</span>
+    <span>{t.location}</span>
+    <a href={routes.privacy[lang]}>{t.privacy}</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    padding-block: 26px;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  .footer-name {
+    color: var(--link);
+    font-weight: 600;
+  }
+</style>
