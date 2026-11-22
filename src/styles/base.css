@@ -1,0 +1,176 @@
+/* Base styles shared by every page. Colours come from tokens.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--ground);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--heading);
+  font-weight: 500;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Page frame */
+
+.site {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Paint the page content above the absolutely positioned aurora. */
+.site > header,
+.site > main,
+.site > footer {
+  position: relative;
+}
+
+.site > main {
+  flex: 1 0 auto;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Skip link: hidden until it gets keyboard focus */
+
+.skip-link {
+  position: absolute;
+  z-index: 10;
+  top: 12px;
+  left: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--heading);
+  color: var(--ground);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus,
+.skip-link:hover {
+  color: var(--ground);
+  transform: none;
+}
+
+/* Buttons */
+
+.btn-primary {
+  display: inline-block;
+  padding: 13px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--heading);
+  color: var(--ground);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--link-hover);
+  color: var(--ground);
+}
+
+/* Text pages: privacy, thanks and 404 */
+
+/* The column starts at the same left edge as the header. Each block is at most about 68 characters wide. */
+.prose {
+  padding-block: 72px 96px;
+}
+
+.prose > * {
+  max-width: 40rem;
+}
+
+.prose h1 {
+  margin-bottom: 24px;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.prose h2 {
+  margin: 40px 0 12px;
+  font-size: 1.375rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.prose p,
+.prose ul {
+  margin: 0 0 16px;
+  color: var(--desc);
+}
+
+.prose ul {
+  padding-left: 1.25em;
+}
+
+.prose li + li {
+  margin-top: 6px;
+}
+
+.prose .meta {
+  color: var(--dim);
+  font-size: 0.9375rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

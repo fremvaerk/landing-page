@@ -1,0 +1,189 @@
+---
+import { EMAIL, routes, sectionIds, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+// Netlify Forms detects each form from the static HTML by its name, so the two languages use different names.
+const copy = {
+  da: {
+    formName: 'kontakt',
+    title: 'Har I en opgave til os?',
+    text: 'Fortæl kort, hvad I arbejder på. Vi svarer inden for én arbejdsdag.',
+    emailLead: 'Eller skriv direkte til',
+    fields: { name: 'navn', email: 'email', message: 'besked' },
+    labels: { name: 'Navn', email: 'E-mail', message: 'Besked' },
+    honeypot: 'Udfyld ikke dette felt:',
+    submit: 'Send besked',
+    note: 'Vi bruger kun oplysningerne til at svare jer.',
+    privacy: 'Privatlivspolitik',
+  },
+  en: {
+    formName: 'contact',
+    title: 'Do you have a task for us?',
+    text: 'Tell us briefly what you work on. We reply within one working day.',
+    emailLead: 'Or write directly to',
+    fields: { name: 'name', email: 'email', message: 'message' },
+    labels: { name: 'Name', email: 'Email', message: 'Message' },
+    honeypot: 'Do not fill in this field:',
+    submit: 'Send message',
+    note: 'We only use your details to reply to you.',
+    privacy: 'Privacy policy',
+  },
+}[lang];
+---
+
+<section id={sectionIds[lang].contact} class="contact" aria-labelledby="contact-title">
+  <div class="container contact-inner">
+    <div class="contact-intro">
+      <h2 id="contact-title">{copy.title}</h2>
+      <p class="contact-text">{copy.text}</p>
+      <p>{copy.emailLead} <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+    </div>
+
+    <form
+      class="form"
+      name={copy.formName}
+      method="POST"
+      action={routes.thanks[lang]}
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value={copy.formName} />
+      <p hidden>
+        <label>{copy.honeypot} <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+      </p>
+
+      <div class="row">
+        <div class="field">
+          <label for="contact-name">{copy.labels.name}</label>
+          <input id="contact-name" name={copy.fields.name} type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="contact-email">{copy.labels.email}</label>
+          <input id="contact-email" name={copy.fields.email} type="email" autocomplete="email" required />
+        </div>
+      </div>
+      <div class="field">
+        <label for="contact-message">{copy.labels.message}</label>
+        <textarea id="contact-message" name={copy.fields.message} rows="5" required></textarea>
+      </div>
+
+      <div class="form-footer">
+        <p class="note">{copy.note} <a href={routes.privacy[lang]}>{copy.privacy}</a></p>
+        <button class="btn-primary" type="submit">{copy.submit}</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+  }
+
+  .contact-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px 80px;
+    padding-block: 96px;
+  }
+
+  .contact-intro {
+    display: flex;
+    flex: 1 1 360px;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3vw, 2.375rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .contact-intro p {
+    color: var(--muted);
+  }
+
+  .contact-text {
+    max-width: 440px;
+  }
+
+  .form {
+    display: flex;
+    flex: 1 1 460px;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .row .field {
+    flex: 1 1 200px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  label {
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    background: var(--input-bg);
+    color: var(--text);
+    font: inherit;
+    font-size: 1rem;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    border-color: var(--accent);
+  }
+
+  .form-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 24px;
+  }
+
+  .note {
+    max-width: 300px;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 639.98px) {
+    .contact-inner {
+      padding-block: 64px;
+    }
+  }
+</style>

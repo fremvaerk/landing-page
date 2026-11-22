@@ -1,0 +1,226 @@
+---
+import { projects, type Project } from '../data/projects';
+import { GITHUB_URL, sectionIds, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  da: {
+    line: 'Værktøjer, vi bygger og selv bruger. Koden ligger åbent på GitHub.',
+    count: (n: number) => `${n} ${n === 1 ? 'projekt' : 'projekter'}`,
+    released: 'Udgivet',
+    development: 'Under udvikling',
+    version: 'version',
+    technology: 'Teknologi',
+    license: 'Licens',
+    started: 'Startet',
+  },
+  en: {
+    line: 'Tools we build and use ourselves. The code is open on GitHub.',
+    count: (n: number) => `${n} ${n === 1 ? 'project' : 'projects'}`,
+    released: 'Released',
+    development: 'In development',
+    version: 'version',
+    technology: 'Technology',
+    license: 'License',
+    started: 'Started',
+  },
+}[lang];
+
+const statusText = (project: Project): string => {
+  if (project.status === 'development') return copy.development;
+  return project.version ? `${copy.released}, ${copy.version} ${project.version}` : copy.released;
+};
+
+/** "https://github.com/fremvaerk/stroem" becomes "github.com/fremvaerk/stroem". */
+const displayUrl = (url: string): string => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+---
+
+<section id={sectionIds[lang].projects} class="projects container" aria-labelledby="projects-title">
+  <div class="projects-head">
+    <div class="intro">
+      <h2 id="projects-title">Open source</h2>
+      <p>{copy.line}</p>
+    </div>
+    <div class="summary">
+      <span>{copy.count(projects.length)}</span>
+      <a href={GITHUB_URL}>{displayUrl(GITHUB_URL)}</a>
+    </div>
+  </div>
+
+  <ul class="project-list">
+    {
+      projects.map((project) => (
+        <li class="project">
+          <div class="project-id">
+            <h3>{project.name}</h3>
+            <span class="status">
+              <span class:list={['dot', project.status]} aria-hidden="true" />
+              {statusText(project)}
+            </span>
+          </div>
+          <div class="project-body">
+            <p>{project.description[lang]}</p>
+            <a href={project.url}>{displayUrl(project.url)}</a>
+          </div>
+          <dl class="facts">
+            <dt>{copy.technology}</dt>
+            <dd>{project.technologies.join(', ')}</dd>
+            {project.license && (
+              <>
+                <dt>{copy.license}</dt>
+                <dd>{project.license}</dd>
+              </>
+            )}
+            <dt>{copy.started}</dt>
+            <dd>{project.started}</dd>
+          </dl>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .projects {
+    padding-block: 72px 96px;
+  }
+
+  .projects-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 48px;
+    margin-bottom: 32px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3vw, 2.375rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .intro p,
+  .summary {
+    color: var(--muted);
+  }
+
+  .summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 24px;
+    font-size: 0.9375rem;
+  }
+
+  .project-list {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .project {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 48px;
+    padding-block: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-id {
+    display: flex;
+    flex: 0 0 240px;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  h3 {
+    font-size: 2.125rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--desc);
+    font-size: 0.875rem;
+  }
+
+  .dot {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .dot.released {
+    background: var(--accent);
+  }
+
+  .dot.development {
+    border: 2px solid var(--accent);
+  }
+
+  .project-body {
+    display: flex;
+    flex: 1 1 340px;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .project-body p {
+    max-width: 520px;
+    color: var(--desc);
+  }
+
+  .project-body a {
+    align-self: flex-start;
+    font-size: 0.9375rem;
+  }
+
+  .facts {
+    display: grid;
+    flex: 0 1 240px;
+    grid-template-columns: auto 1fr;
+    align-content: start;
+    gap: 6px 18px;
+    min-width: 0;
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  dt {
+    color: var(--dim);
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  @media (max-width: 639.98px) {
+    .projects {
+      padding-block: 48px 72px;
+    }
+
+    .project-id {
+      flex-basis: 100%;
+    }
+  }
+</style>

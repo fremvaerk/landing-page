@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { routes } from '../i18n/ui';
+
+// One page for both languages. Netlify serves dist/404.html for unknown paths.
+---
+
+<Layout
+  lang="da"
+  page="notFound"
+  title="Siden findes ikke · Page not found – FremVærk"
+  description="Siden findes ikke. The page does not exist."
+  noindex
+>
+  <div class="container prose">
+    <h1>Siden findes ikke</h1>
+    <p>Siden, I leder efter, er flyttet eller findes ikke.</p>
+    <p><a href={routes.home.da}>Gå til forsiden</a></p>
+
+    <div lang="en">
+      <h2>Page not found</h2>
+      <p>The page you are looking for has moved or does not exist.</p>
+      <p><a href={routes.home.en}>Go to the English home page</a></p>
+    </div>
+  </div>
+</Layout>

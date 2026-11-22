@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CVR, EMAIL } from '../i18n/ui';
+---
+
+<Layout
+  lang="da"
+  page="privacy"
+  title="Privatlivspolitik – FremVærk"
+  description="Sådan behandler FremVærk oplysninger, når I bruger fremvaerk.dk og kontaktformularen."
+>
+  <article class="container prose">
+    <h1>Privatlivspolitik</h1>
+    <p class="meta">Senest opdateret 22. november 2026</p>
+
+    <h2>Dataansvarlig</h2>
+    <p>
+      FremVærk, CVR {CVR}, Birkerød, Danmark, er dataansvarlig for de oplysninger, vi modtager via
+      denne side. I kan kontakte os på <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+    </p>
+
+    <h2>Cookies og statistik</h2>
+    <p>
+      Siden sætter ingen cookies og bruger ingen analyse- eller statistikværktøjer. Siden henter ikke
+      indhold fra andre tjenester, når I besøger den.
+    </p>
+
+    <h2>Kontaktformularen</h2>
+    <p>
+      Når I sender kontaktformularen, modtager vi jeres navn, e-mailadresse og besked. Formularen
+      behandles af Netlify, som er vores databehandler. Vi bruger kun oplysningerne til at svare på
+      jeres henvendelse. Grundlaget er vores legitime interesse i at besvare henvendelser (GDPR artikel
+      6, stk. 1, litra f).
+    </p>
+    <p>
+      Vi gemmer oplysningerne i [12 måneder] efter vores sidste kontakt med jer, og derefter sletter vi
+      dem.
+    </p>
+
+    <h2>Hosting og serverlogs</h2>
+    <p>
+      Siden hostes af Netlify. Netlify gemmer almindelige serverlogs, for eksempel IP-adresse,
+      tidspunkt, den side der blev hentet, og browsertype. Loggene bruges til at drive og beskytte
+      tjenesten. Netlify kan behandle oplysninger uden for EU. [Overførselsgrundlaget, for eksempel
+      EU-Kommissionens standardkontraktbestemmelser, skal bekræftes.]
+    </p>
+
+    <h2>Jeres rettigheder</h2>
+    <p>Efter databeskyttelsesforordningen (GDPR) har I ret til at:</p>
+    <ul>
+      <li>få indsigt i de oplysninger, vi har om jer</li>
+      <li>få forkerte oplysninger rettet</li>
+      <li>få oplysningerne slettet</li>
+      <li>begrænse eller gøre indsigelse mod behandlingen</li>
+      <li>få oplysningerne udleveret i et almindeligt format (dataportabilitet)</li>
+    </ul>
+    <p>Skriv til <a href={`mailto:${EMAIL}`}>{EMAIL}</a>, hvis I vil bruge jeres rettigheder.</p>
+
+    <h2>Klage</h2>
+    <p>
+      I kan klage over vores behandling af jeres oplysninger til Datatilsynet,
+      <a href="https://www.datatilsynet.dk/">datatilsynet.dk</a>.
+    </p>
+  </article>
+</Layout>
