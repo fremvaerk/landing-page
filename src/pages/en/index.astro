@@ -1,0 +1,15 @@
+---
+import Contact from '../../components/Contact.astro';
+import Hero from '../../components/Hero.astro';
+import Projects from '../../components/Projects.astro';
+import Layout from '../../layouts/Layout.astro';
+import { ui } from '../../i18n/ui';
+
+const t = ui.en;
+---
+
+<Layout lang="en" page="home" title={t.homeTitle} description={t.homeDescription} aurora>
+  <Hero lang="en" />
+  <Projects lang="en" />
+  <Contact lang="en" />
+</Layout>

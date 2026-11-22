@@ -1,14 +1,15 @@
 ---
+import Contact from '../components/Contact.astro';
+import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
+import Layout from '../layouts/Layout.astro';
+import { ui } from '../i18n/ui';
+
+const t = ui.da;
 ---
 
-<!doctype html>
-<html lang="da">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FremVærk</title>
-  </head>
-  <body>
-    <h1>FremVærk</h1>
-  </body>
-</html>
+<Layout lang="da" page="home" title={t.homeTitle} description={t.homeDescription} aurora>
+  <Hero lang="da" />
+  <Projects lang="da" />
+  <Contact lang="da" />
+</Layout>
