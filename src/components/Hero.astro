@@ -1,0 +1,119 @@
+---
+import { roles } from '../data/roles';
+import { sectionIds, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ids = sectionIds[lang];
+
+const copy = {
+  da: {
+    title: 'Vi udvikler software, driver platforme og integrerer AI.',
+    lead: 'FremVærk er et dansk softwarehus. Vi tager imod opgaver inden for udvikling, DevOps, cloud og AI, og vi bygger vores egne værktøjer som open source.',
+    primary: 'Skriv til os',
+    secondary: 'Se projekterne',
+    rolesLabel: 'Det arbejder vi med',
+  },
+  en: {
+    title: 'We build software, run platforms and integrate AI.',
+    lead: 'FremVærk is a Danish software company. We take on work in development, DevOps, cloud and AI, and we build our own tools as open source.',
+    primary: 'Contact us',
+    secondary: 'See the projects',
+    rolesLabel: 'What we work with',
+  },
+}[lang];
+---
+
+<section class="hero container" aria-labelledby="hero-title">
+  <h1 id="hero-title">{copy.title}</h1>
+  <p class="lead">{copy.lead}</p>
+  <div class="actions">
+    <a class="btn-primary" href={`#${ids.contact}`}>{copy.primary}</a>
+    <a class="secondary" href={`#${ids.projects}`}>{copy.secondary}</a>
+  </div>
+  <ul class="roles" aria-label={copy.rolesLabel}>
+    {
+      roles.map((role) => (
+        <li>
+          <span class="role-title">{role.title[lang]}</span>
+          <span class="role-line">{role.line[lang]}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-block: 96px 64px;
+  }
+
+  h1 {
+    max-width: 880px;
+    font-size: clamp(2.375rem, 4.8vw, 3.875rem);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .lead {
+    max-width: 600px;
+    color: var(--muted);
+    font-size: 1.1875rem;
+    text-wrap: pretty;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 28px;
+  }
+
+  .secondary {
+    font-weight: 500;
+  }
+
+  .roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px 32px;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .roles li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .role-title {
+    color: var(--heading);
+    font-weight: 600;
+  }
+
+  .role-line {
+    color: var(--muted);
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 639.98px) {
+    .hero {
+      padding-block: 64px 48px;
+    }
+
+    .roles {
+      margin-top: 16px;
+    }
+  }
+</style>
