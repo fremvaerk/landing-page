@@ -35,7 +35,7 @@ export const ui = {
     homeTitle: 'FremVærk – softwareudvikling, DevOps, cloud og AI',
     homeDescription:
       'FremVærk er et dansk softwarehus. Vi tager imod opgaver inden for udvikling, DevOps, cloud og AI, og vi bygger vores egne værktøjer som open source.',
-    shareImageAlt: 'FremVærk – Vi udvikler software, driver platforme og integrerer AI.',
+    shareImageAlt: 'FremVærk – software, DevOps, cloud og AI',
   },
   en: {
     locale: 'en_GB',
@@ -50,7 +50,7 @@ export const ui = {
     homeTitle: 'FremVærk – software development, DevOps, cloud and AI',
     homeDescription:
       'FremVærk is a Danish software company. We take on work in development, DevOps, cloud and AI, and we build our own tools as open source.',
-    shareImageAlt: 'FremVærk – We build software, run platforms and integrate AI.',
+    shareImageAlt: 'FremVærk – software, DevOps, cloud and AI',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 
